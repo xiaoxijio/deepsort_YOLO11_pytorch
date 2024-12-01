@@ -258,8 +258,7 @@ def detect(opt):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--yolo_weights', type=str, default='weights/yolo11s.pt', help='model.pt path')
-    parser.add_argument('--deep_sort_weights', type=str, default='deep_sort_pytorch/deep_sort/deep/checkpoint/ckpt.t7',
-                        help='ckpt.t7 path')
+    parser.add_argument('--deep_sort_weights', type=str, default='weights/ckpt.t7', help='ckpt.t7 path')
     # file/folder, 0 for webcam
     parser.add_argument('--source', type=str, default='test.mp4', help='source')
     parser.add_argument('--output', type=str, default='inference/output', help='output folder')  # output folder
