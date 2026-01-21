@@ -15,8 +15,8 @@ from ultralytics.utils.checks import check_imgsz, check_imshow
 from ultralytics.utils.torch_utils import select_device, time_sync
 from ultralytics.data.loaders import LoadStreams, LoadImagesAndVideos
 from ultralytics.data.augment import LetterBox
-from ultralytics.utils.ops import non_max_suppression
-from ultralytics.nn.tasks import attempt_load_weights
+from ultralytics.utils.nms import non_max_suppression
+from ultralytics.nn.tasks import load_checkpoint
 from deep_sort_pytorch.utils.parser import get_config
 from deep_sort_pytorch.deep_sort import DeepSort
 from utils import scale_coords
@@ -108,7 +108,7 @@ def detect(opt):
     half = device.type != 'cpu'  # half precision only supported on CUDA
 
     # Load model
-    model = attempt_load_weights(yolo_weights, device=device)  # load FP32 model
+    model = load_checkpoint(yolo_weights, device=device)[0]  # load FP32 model
     stride = int(model.stride.max())  # model stride
     imgsz = check_imgsz(imgsz, stride=stride)  # check img_size
     if half:
